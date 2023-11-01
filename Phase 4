@@ -1,0 +1,83 @@
+import random
+
+import numpy as np
+
+import pickle
+
+import json
+
+pip install flask
+
+Requirement already satisfied: flask in 
+
+/usr/local/lib/python3.10/dist-packages (2.2.5)
+
+Requirement already satisfied: Werkzeug>=2.2.2 in 
+
+/usr/local/lib/python3.10/dist-packages (from flask) (3.0.1)
+
+Requirement already satisfied: Jinja2>=3.0 in 
+
+/usr/local/lib/python3.10/dist-packages (from flask) (3.1.2)
+
+Requirement already satisfied: itsdangerous>=2.0 in 
+
+/usr/local/lib/python3.10/dist-packages (from flask) (2.1.2)
+
+Requirement already satisfied: click>=8.0 in 
+
+/usr/local/lib/python3.10/dist-packages (from flask) (8.1.7)
+
+Requirement already satisfied: MarkupSafe>=2.0 in 
+
+/usr/local/lib/python3.10/dist-packages (from Jinja2>=3.0->flask) 
+
+(2.1.3)
+
+# libraries
+
+from flask import Flask, render_template, request
+
+import nltk
+
+from keras.models import load_model
+
+from nltk.stem import WordNetLemmatizer
+
+lemmatizer = WordNetLemmatizer()
+
+# chat initialization
+
+model = load_model("chatbot_model.h5")
+
+intents = json.loads(open("intents.json").read())
+
+words = pickle.load(open("words.pkl", "rb"))
+
+classes = pickle.load(open("classes.pkl", "rb"))
+
+app = Flask(__name__)
+
+@app.route("/")
+
+def home():
+
+ return render_template("index.html")
+
+@app.route("/get", methods=["POST"])
+
+def chatbot_response():
+
+ msg = request.form["msg"]
+
+ #checks is a user has given a name, in order to give a 
+
+personalized feedback
+
+ if msg.startswith('my name is'):
+
+ name = msg[11:]
+
+ ints = predict_class(msg, model)
+
+ res1 = getResponse(ints, intents)
