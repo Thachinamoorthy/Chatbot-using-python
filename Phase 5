@@ -1,0 +1,43 @@
+Create chatbot using Python
+
+Table of Contents:
+
+1. Introduction
+
+ - Project Overview
+
+ - Objectives
+
+ - Technologies Used
+
+2. Setting up the Environment
+
+ - Python Installation
+
+ - Virtual Environment Setup
+
+ - Flask Installation
+
+ - Required Libraries
+
+3. Project Structure
+
+ - Overview of Project Files and Directories
+
+4. Building the Chatbot
+
+ - Creating a Flask Application
+
+ - Designing the Chatbot Interface
+
+ - Implementing the Chatbot Logic
+
+ - NLP Models 
+
+5. Chatbot User Interface
+
+ - Creating Web Pages
+
+ - HTML, CSS, and JavaScript for User Interface
+
+ - User Interaction with the Chatbot
